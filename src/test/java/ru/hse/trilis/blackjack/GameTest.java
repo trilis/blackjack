@@ -53,4 +53,19 @@ class GameTest {
         var acc = new Card("", List.of(11, 1));
         assertEquals(12, Game.optimalSum(List.of(acc, acc)));
     }
+
+    @Test
+    void testInitialState() {
+        GameState state = game.getGameState();
+        assertEquals(2, state.getCards().size());
+        assertEquals(State.CONTINUE, state.getState());
+    }
+
+    @Test
+    void testStopState() {
+        GameState state = game.getGameState();
+        FinalState finalState = game.stop();
+        assertEquals(Game.optimalSum(state.getCards()), finalState.getPlayerSum());
+    }
+
 }
