@@ -7,12 +7,17 @@ public class Game {
     private Deck deck = new Deck(0);
     private Player player = new Player();
     private List<Card> croupierCards = new ArrayList<>();
+    private State state = State.CONTINUE;
 
     public Game() {
         for (int i = 0; i < 2; i++) {
             player.addCard(deck.getNextCard());
             croupierCards.add(deck.getNextCard());
         }
+    }
+
+    public GameState getGameState() {
+        return new GameState(player.getCards(), state);
     }
 
     public void makeTurn() {
@@ -24,6 +29,7 @@ public class Game {
         while (Game.optimalSum(croupierCards) < 16) {
             croupierCards.add(deck.getNextCard());
         }
+        state = State.FINISH;
         return new FinalState(optimalSum(player.getCards()), optimalSum(croupierCards));
     }
 
