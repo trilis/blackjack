@@ -21,7 +21,7 @@ class DeckTest {
         for (int i = 0; i < 52; i++) {
             var card = deck.getNextCard();
             var count = types.get(card.getName());
-            types.put(card.getName(), count + 1);
+            types.put(card.getName(), count == null ? 1 : count + 1);
         }
 
 
