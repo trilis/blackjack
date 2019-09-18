@@ -16,7 +16,7 @@ public class Game {
     }
 
     public void makeTurn() {
-        var nextCard = deck.getNextCard();
+        Card nextCard = deck.getNextCard();
         player.addCard(nextCard);
     }
 
@@ -28,13 +28,13 @@ public class Game {
     }
 
     static public int optimalSum(List<Card> cards) {
-        var sum = 0;
-        for (var card : cards) {
+        int sum = 0;
+        for (Card card : cards) {
             sum += card.getValues().stream().min(Integer::compareTo).orElse(0);
         }
-        for (var card : cards) {
+        for (Card card : cards) {
             if (card.getValues().size() > 1) {
-                var delta = card.getValues().stream().max(Integer::compareTo).orElse(0)
+                int delta = card.getValues().stream().max(Integer::compareTo).orElse(0)
                         - card.getValues().stream().min(Integer::compareTo).orElse(0);
                 if (sum + delta <= MAX_POINTS) {
                     sum += delta;
