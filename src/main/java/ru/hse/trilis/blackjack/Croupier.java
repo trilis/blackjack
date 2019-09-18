@@ -11,9 +11,6 @@ public class Croupier {
     }
 
     public List<Card> play(Deck deck) {
-        while (Game.optimalSum(cards) < 16) {
-            cards.add(deck.getNextCard());
-        }
         return cards;
     }
 }

@@ -1,16 +1,17 @@
 package ru.hse.trilis.blackjack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     private Deck deck = new Deck(0);
     //private Player player = new Player();
-    private Croupier croupier = new Croupier();
+    private List<Card> croupierCards = new ArrayList<>();
 
     public Game() {
         for (int i = 0; i < 2; i++) {
             //player.addCard(deck.getNextCard());
-            croupier.addCard(deck.getNextCard());
+            croupierCards.add(deck.getNextCard());
         }
     }
 
@@ -20,7 +21,9 @@ public class Game {
     }
 
     public void stop() {
-
+        while (Game.optimalSum(croupierCards) < 16) {
+            croupierCards.add(deck.getNextCard());
+        }
     }
 
     static public int optimalSum(List<Card> cards) {
