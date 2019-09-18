@@ -4,10 +4,19 @@ import java.util.List;
 
 public class Game {
     private Deck deck = new Deck(0);
-    //player
+    //private Player player = new Player();
+    private Croupier croupier = new Croupier();
+
+    public Game() {
+        for (int i = 0; i < 2; i++) {
+            //player.addCard(deck.getNextCard());
+            croupier.addCard(deck.getNextCard());
+        }
+    }
 
     public void makeTurn() {
-
+        var nextCard = deck.getNextCard();
+        //player.addCard(nextCard);
     }
 
     public void stop() {
