@@ -5,25 +5,26 @@ import java.util.List;
 
 public class Game {
     private Deck deck = new Deck(0);
-    //private Player player = new Player();
+    private Player player = new Player();
     private List<Card> croupierCards = new ArrayList<>();
 
     public Game() {
         for (int i = 0; i < 2; i++) {
-            //player.addCard(deck.getNextCard());
+            player.addCard(deck.getNextCard());
             croupierCards.add(deck.getNextCard());
         }
     }
 
     public void makeTurn() {
         var nextCard = deck.getNextCard();
-        //player.addCard(nextCard);
+        player.addCard(nextCard);
     }
 
-    public void stop() {
+    public FinalState stop() {
         while (Game.optimalSum(croupierCards) < 16) {
             croupierCards.add(deck.getNextCard());
         }
+        return new FinalState(optimalSum(player.getCards()), optimalSum(croupierCards));
     }
 
     static public int optimalSum(List<Card> cards) {
