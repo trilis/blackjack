@@ -1,9 +1,7 @@
 package ru.hse.trilis.blackjack;
 
-import org.jetbrains.annotations.NotNull;
 
 public class FinalState {
-    @NotNull
     private Winner winner;
     private int playerSum;
     private int croupierSum;
@@ -23,7 +21,7 @@ public class FinalState {
         }
     }
 
-    @NotNull public Winner getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
