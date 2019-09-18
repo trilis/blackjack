@@ -33,6 +33,9 @@ public class Deck {
     }
 
     public Card getNextCard() {
+        if (index >= 52) {
+            throw new IllegalStateException("Deck is empty");
+        }
         return cards.get(index++);
     }
 }
