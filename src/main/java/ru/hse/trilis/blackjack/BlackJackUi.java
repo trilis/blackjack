@@ -1,6 +1,6 @@
 package ru.hse.trilis.blackjack;
 
-import javafx.scene.canvas.GraphicsContext
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 import java.util.List;
