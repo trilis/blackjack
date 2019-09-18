@@ -14,6 +14,8 @@ public class FinalState {
 
         if (playerSum > Game.MAX_POINTS) {
             winner = Winner.CROUPIER;
+        } else if (playerSum > croupierSum) {
+            winner = Winner.PLAYER;
         } else if (playerSum == croupierSum) {
             winner = Winner.DRAW;
         } else {
