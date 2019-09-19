@@ -1,6 +1,5 @@
 package ru.hse.trilis.blackjack;
 
-
 public class FinalState {
     private Winner winner;
     private int playerSum;
@@ -16,8 +15,10 @@ public class FinalState {
             winner = Winner.PLAYER;
         } else if (playerSum == croupierSum) {
             winner = Winner.DRAW;
-        } else {
+        } else if (croupierSum > Game.MAX_POINTS) {
             winner = Winner.PLAYER;
+        } else {
+            winner = Winner.CROUPIER;
         }
     }
 

@@ -1,0 +1,34 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ToolBar ?>
+<?import java.net.URL?>
+<BorderPane fx:controller="ru.hse.trilis.blackjack.BlackJackUi" xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <ToolBar>
+            <Button fx:id="buttonMakeTurn" onAction="#makeTurnCall" text="Pick new card" minWidth="200" disable="true"/>
+            <Button fx:id="buttonFinishGame" onAction="#finishGame" text="Finish" minWidth="250" disable="true"/>
+            <Button fx:id="buttonNewGame" onAction="#newGame" text="Start new game" minWidth="250" disable="false"/>
+
+        </ToolBar>
+    </top>
+    <center>
+        <VBox>
+            <Label fx:id="cards" styleClass="label" wrapText="true" text="Nothing">
+            </Label>
+
+            <Label fx:id="yourScore" styleClass="label" wrapText="true" text="0">
+            </Label>
+
+            <Label fx:id="crScore" styleClass="label" wrapText="true" text="0">
+            </Label>
+        </VBox>
+    </center>
+
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
+</BorderPane>
