@@ -25,14 +25,14 @@ public class BlackJackUi extends Application {
     @FXML
     public void makeTurnCall() {
         game.makeTurn();
-        GameState gameState = game.getGameState();
+        var gameState = game.getGameState();
 
         if (gameState.getState() == State.FINISH) {
             finishGame();
             return;
         }
 
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
         for (Card card : gameState.getCards()) {
             result.append(card.getName()).append("\n");
         }
@@ -51,7 +51,7 @@ public class BlackJackUi extends Application {
         buttonMakeTurn.setDisable(true);
         buttonFinishGame.setDisable(true);
 
-        String message = "";
+        var message = "";
 
         switch (finalState.getWinner()) {
             case PLAYER:
@@ -65,7 +65,7 @@ public class BlackJackUi extends Application {
                 break;
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
 
         alert.showAndWait();
