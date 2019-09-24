@@ -57,7 +57,7 @@ class GameTest {
     @Test
     void testInitialState() {
         GameState state = game.getGameState();
-        assertEquals(2, state.getCards().size());
+        assertEquals(1, state.getCards().size());
         assertEquals(State.CONTINUE, state.getState());
     }
 

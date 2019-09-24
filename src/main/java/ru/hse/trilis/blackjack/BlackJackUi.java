@@ -32,13 +32,13 @@ public class BlackJackUi extends Application {
             return;
         }
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Card card : gameState.getCards()) {
-            result += card.getName() + "\n";
+            result.append(card.getName()).append("\n");
         }
 
-        result += "\n";
-        cards.setText(result);
+        result.append("\n");
+        cards.setText(result.toString());
      }
 
     @FXML
@@ -85,7 +85,10 @@ public class BlackJackUi extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("BlackJackUi.fxml"));
+        var resource = getClass().getClassLoader().getResource("BlackJackUi.fxml");
+        assert resource != null;
+        Parent root = FXMLLoader.load(resource);
+
         primaryStage.setTitle("BlackJack");
         primaryStage.setScene(new Scene(root, 1200, 900));
         primaryStage.show();
