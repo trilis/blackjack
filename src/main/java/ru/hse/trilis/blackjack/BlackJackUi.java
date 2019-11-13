@@ -17,6 +17,10 @@ import java.util.List;
  * Controller of game logic.
  */
 public class BlackJackUi extends Application {
+    private static final int SCREEN_WIDTH = 1200;
+    private static final int SCREEN_HEIGHT = 900;
+    private static final String TITLE = "BlackJack";
+
     @FXML private Button buttonMakeTurn;
     @FXML private Button buttonFinishGame;
     @FXML private Label cards;
@@ -107,10 +111,10 @@ public class BlackJackUi extends Application {
     public void start(Stage primaryStage) throws Exception {
         var resource = getClass().getClassLoader().getResource("BlackJackUi.fxml");
         assert resource != null;
-        Parent root = FXMLLoader.load(resource);
 
-        primaryStage.setTitle("BlackJack");
-        primaryStage.setScene(new Scene(root, 1200, 900));
+        Parent root = FXMLLoader.load(resource);
+        primaryStage.setTitle(TITLE);
+        primaryStage.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         primaryStage.show();
     }
 

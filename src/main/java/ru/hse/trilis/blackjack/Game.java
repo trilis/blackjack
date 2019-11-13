@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Game {
     public static final int MAX_POINTS = 21;
+    private static final int INIT_CARD_NUMBER = 2;
 
     private Deck deck = new Deck();
     private List<Player> players = new ArrayList<>();
@@ -16,12 +17,23 @@ public class Game {
     private Player activePlayer;
 
     public Game(List<String> playerNames) {
+        givePlayerCards(playerNames);
+        giveCroupierCards();
+    }
+
+    private void giveCroupierCards() {
+        for (int i = 0; i < INIT_CARD_NUMBER; i++) {
+            croupier.addCard(deck.getNextCard());
+        }
+    }
+
+    private void givePlayerCards(List<String> playerNames) {
         int n = playerNames.size();
         for (int i = 0; i < n; i++) {
             players.add(new Player(playerNames.get(i)));
-            for (int j = 0; j < 2; j++) {
+            for (int j = 0; j < INIT_CARD_NUMBER; j++) {
                 players.get(i).addCard(deck.getNextCard());
-                croupier.addCard(deck.getNextCard());
+
             }
         }
     }
