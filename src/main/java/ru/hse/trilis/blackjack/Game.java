@@ -6,15 +6,13 @@ import java.util.List;
 public class Game {
     public static final int MAX_POINTS = 21;
     private static final int INIT_CARD_NUMBER = 2;
+    private static final int CROUPIER_BARRIER_POINTS = 16;
 
     private Deck deck = new Deck();
     private List<Player> players = new ArrayList<>();
     private Player croupier = new Player("croupier");
     private int activePlayerId = 0;
     private FinalState finalState = null;
-
-    //FIXME
-    private Player activePlayer;
 
     public Game(List<String> playerNames) {
         givePlayerCards(playerNames);
@@ -63,7 +61,7 @@ public class Game {
     }
 
     public void stop() {
-        while (croupier.calculateOptimalSum(MAX_POINTS) < 16) {
+        while (croupier.calculateOptimalSum(MAX_POINTS) < CROUPIER_BARRIER_POINTS) {
             croupier.addCard(deck.getNextCard());
         }
         finalState = new FinalState(players, croupier.calculateOptimalSum(MAX_POINTS));
