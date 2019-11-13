@@ -4,20 +4,29 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+
 public class PlayState {
-    @NotNull private List<Card> cards;
+    @NotNull private List<Player> players;
+    @NotNull private Player activePlayer;
     @NotNull private State state;
 
-    public PlayState(@NotNull List<Card> cards, @NotNull State state) {
-        this.cards = cards;
+    public PlayState(@NotNull List<Player> players ,
+                     @NotNull State state,
+                     @NotNull Player activePlayer) {
+        this.players = players;
         this.state = state;
+        this.activePlayer = activePlayer;
     }
 
     @NotNull public State getState() {
         return state;
     }
 
-    @NotNull public List<Card> getCards() {
-        return cards;
+    @NotNull public List<Player> getPlayers() {
+        return players;
+    }
+
+    @NotNull public Player getActivePlayer() {
+        return activePlayer;
     }
 }

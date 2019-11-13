@@ -7,6 +7,16 @@ import java.util.List;
 
 public class Player {
     private List<Card> cards = new ArrayList<>();
+    private String name;
+    private boolean isActive = true;
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @NotNull
     public List<Card> getCards() {
@@ -45,5 +55,13 @@ public class Player {
             sum += card.getValues().stream().min(Integer::compareTo).orElse(0);
         }
         return sum;
+    }
+
+    public void pass() {
+        isActive = false;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }
