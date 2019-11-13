@@ -8,6 +8,7 @@ import java.util.List;
 public class Player {
     private List<Card> cards = new ArrayList<>();
     private String name;
+    private boolean isActive = true;
 
     public Player(String name) {
         this.name = name;
@@ -24,5 +25,13 @@ public class Player {
 
     public void addCard(@NotNull Card card) {
         cards.add(card);
+    }
+
+    public void pass() {
+        isActive = false;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }
