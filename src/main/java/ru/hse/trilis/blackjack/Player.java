@@ -7,6 +7,15 @@ import java.util.List;
 
 public class Player {
     private List<Card> cards = new ArrayList<>();
+    private String name;
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @NotNull
     public List<Card> getCards() {
