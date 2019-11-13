@@ -39,10 +39,12 @@ public class BlackJackUi extends Application {
     @NotNull
     private String getResultMessage(PlayState playState) {
         var result = new StringBuilder();
-        for (Card card : playState.getCards()) {
-            result.append(card.getName()).append("\n");
+        for (Player player : playState.getPlayers()) {
+            for (Card card : player.getCards()) {
+                result.append(card.getName()).append("\n");
+            }
+            result.append("\n");
         }
-        result.append("\n");
         return result.toString();
     }
 
