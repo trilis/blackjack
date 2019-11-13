@@ -6,14 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FinalState {
-    private enum ResultKind {
+    public enum ResultKind {
         WIN, LOSE, DRAW
     }
 
-    private class Result {
-        String name;
-        int sum;
-        ResultKind kind;
+    public class Result {
+        private String name;
+        private int sum;
+        private ResultKind kind;
+
+        public String getName() {
+            return name;
+        }
+
+        public int getSum() {
+            return sum;
+        }
+
+        public ResultKind getKind() {
+            return kind;
+        }
 
         public Result(String name, int sum, ResultKind kind) {
             this.name = name;

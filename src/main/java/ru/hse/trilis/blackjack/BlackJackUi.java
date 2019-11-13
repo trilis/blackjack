@@ -56,23 +56,15 @@ public class BlackJackUi extends Application {
     public void finishGame() {
         FinalState finalState = game.getFinalState();
 
-        yourScore.setText(Integer.valueOf(finalState.getPlayerSum()).toString());
+        yourScore.setText(Integer.valueOf(finalState.getResults().get(0).getSum()).toString());
         crScore.setText(Integer.valueOf(finalState.getCroupierSum()).toString());
 
         disableButtons();
 
         var message = "";
 
-        switch (finalState.getWinner()) {
-            case PLAYER:
-                message = "PLAYER";
-                break;
-            case DRAW:
-                message = "DRAW";
-                break;
-            case CROUPIER:
-                message = "CROUPIER";
-                break;
+        for (var result : finalState.getResults()) {
+            message += result.getName() + ": " + result.getSum();
         }
 
         var alert = new Alert(Alert.AlertType.INFORMATION);
