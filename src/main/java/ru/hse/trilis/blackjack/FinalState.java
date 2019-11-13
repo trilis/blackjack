@@ -14,12 +14,11 @@ public class FinalState {
     public FinalState(List<Player> players, int croupierSum) {
         this.players = players;
         this.croupierSum = croupierSum;
-
         var winnerNames = new ArrayList<String>();
         var drawNames = new ArrayList<String>();
 
         for (var player : players) {
-            var playerSum = Game.optimalSum(player.getCards());
+            var playerSum = player.calculateOptimalSum(Game.MAX_POINTS);
             if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
                 if (playerSum == croupierSum) {
                     drawNames.add(player.getName());
@@ -30,7 +29,8 @@ public class FinalState {
         }
     }
 
-    @NotNull public Winner getWinner() {
+    @NotNull
+    public Winner getWinner() {
         return winner;
     }
 

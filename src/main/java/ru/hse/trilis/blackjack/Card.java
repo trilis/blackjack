@@ -1,6 +1,5 @@
 package ru.hse.trilis.blackjack;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Card {

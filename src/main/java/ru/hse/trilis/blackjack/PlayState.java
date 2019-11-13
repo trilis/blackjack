@@ -5,12 +5,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.List;
 
-public class GameState {
+public class PlayState {
     @NotNull private List<Player> players;
     @NotNull private Player activePlayer;
     @NotNull private State state;
 
-    public GameState(@NotNull List<Player> players ,
+    public PlayState(@NotNull List<Player> players ,
                      @NotNull State state,
                      @NotNull Player activePlayer) {
         this.players = players;

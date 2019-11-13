@@ -1,21 +1,19 @@
 package ru.hse.trilis.blackjack;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Deck {
-    private List<Card> cards = new ArrayList<>();
-    private int index = 0;
+    private static final int SUIT_NUMBER = 4;
+
+    private Stack<Card> cards = new Stack<>();
 
     private void addCards(String name, List<Integer> values) {
-        for (int i = 0; i < 4; i++) {
-            cards.add(new Card(name, values));
+        for (int i = 0; i < SUIT_NUMBER; i++) {
+            cards.push(new Card(name, values));
         }
     }
 
-    public Deck(int seed) {
+    public Deck() {
         addCards("A", List.of(1, 11));
         addCards("2", List.of(2));
         addCards("3", List.of(3));
@@ -29,13 +27,13 @@ public class Deck {
         addCards("J", List.of(10));
         addCards("Q", List.of(10));
         addCards("K", List.of(10));
-        Collections.shuffle(cards, new Random(seed));
+        Collections.shuffle(cards, new Random());
     }
 
     public Card getNextCard() {
-        if (index >= 52) {
+        if (cards.empty()) {
             throw new IllegalStateException("Deck is empty");
         }
-        return cards.get(index++);
+        return cards.pop();
     }
 }
