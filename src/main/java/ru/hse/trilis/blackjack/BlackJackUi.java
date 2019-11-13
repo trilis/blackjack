@@ -53,18 +53,21 @@ public class BlackJackUi extends Application {
     @FXML
     public void finishGame() {
         FinalState finalState = game.getFinalState();
-
-        yourScore.setText(Integer.valueOf(finalState.getResults().get(0).getSum()).toString());
-        crScore.setText(Integer.valueOf(finalState.getCroupierSum()).toString());
-
+        setResultLabels(finalState);
         disableButtons();
+        displayAlertMessage(finalState);
+    }
 
+    private void displayAlertMessage(FinalState finalState) {
         String message = getResultMessage(finalState);
-
         var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
-
         alert.showAndWait();
+    }
+
+    private void setResultLabels(FinalState finalState) {
+        yourScore.setText(Integer.valueOf(finalState.getResults().get(0).getSum()).toString());
+        crScore.setText(Integer.valueOf(finalState.getCroupierSum()).toString());
     }
 
     @NotNull
