@@ -5,8 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class GameState {
-    @NotNull
-    private List<Card> cards;
+    @NotNull private List<Card> cards;
     @NotNull private State state;
 
     public GameState(@NotNull List<Card> cards, @NotNull State state) {
