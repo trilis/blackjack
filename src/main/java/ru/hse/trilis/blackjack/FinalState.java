@@ -51,7 +51,7 @@ public class FinalState {
 
         for (var player : players) {
             var playerSum = player.calculateOptimalSum(Game.MAX_POINTS);
-            ResultKind resultKind = null;
+            ResultKind resultKind;
             if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
                 if (playerSum == croupierSum) {
                     resultKind = ResultKind.DRAW;

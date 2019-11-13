@@ -34,12 +34,12 @@ public class BlackJackUi extends Application {
             return;
         }
 
-        String result = getResultMessage(gameState);
+        String result = getTurnMessage(gameState);
         cards.setText(result);
      }
 
     @NotNull
-    private String getResultMessage(GameState gameState) {
+    private String getTurnMessage(GameState gameState) {
         var result = new StringBuilder();
         for (Player player : gameState.getPlayers()) {
             for (Card card : player.getCards()) {
@@ -59,16 +59,22 @@ public class BlackJackUi extends Application {
 
         disableButtons();
 
-        var message = "";
-
-        for (var result : finalState.getResults()) {
-            message += result.getName() + ": " + result.getSum();
-        }
+        String message = getResultMessage(finalState);
 
         var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+
+    @NotNull
+    private String getResultMessage(FinalState finalState) {
+        StringBuilder message = new StringBuilder();
+
+        for (var result : finalState.getResults()) {
+            message.append(result.getName()).append(": ").append(result.getSum());
+        }
+        return message.toString();
     }
 
     @FXML
