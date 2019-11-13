@@ -6,8 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FinalState {
+    private enum ResultKind {
+        WIN, LOSE, DRAW
+    }
+
+    private class Result {
+        String name;
+        int sum;
+        ResultKind kind;
+
+        public Result(String name, int sum, ResultKind kind) {
+            this.name = name;
+            this.sum = sum;
+            this.kind = kind;
+        }
+    }
+
     @NotNull
-    private Winner winner;
+    private List<Result> results;
     private List<Player> players;
     private int croupierSum;
 
@@ -23,19 +39,23 @@ public class FinalState {
 
         for (var player : players) {
             var playerSum = player.calculateOptimalSum(Game.MAX_POINTS);
+            ResultKind resultKind = null;
             if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
                 if (playerSum == croupierSum) {
-                    drawNames.add(player.getName());
+                    resultKind = ResultKind.DRAW;
                 } else {
-                    winnerNames.add(player.getName());
+                    resultKind = ResultKind.WIN;
                 }
+            } else {
+                resultKind = ResultKind.LOSE;
             }
+            results.add(new Result(player.getName(), playerSum, resultKind));
         }
     }
 
     @NotNull
-    public Winner getWinner() {
-        return winner;
+    public List<Result> getResults() {
+        return results;
     }
 
     public int getCroupierSum() {

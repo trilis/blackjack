@@ -11,6 +11,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Controller of game logic.
  */
@@ -50,7 +54,7 @@ public class BlackJackUi extends Application {
 
     @FXML
     public void finishGame() {
-        FinalState finalState = game.stop();
+        FinalState finalState = game.getFinalState();
 
         yourScore.setText(Integer.valueOf(finalState.getPlayerSum()).toString());
         crScore.setText(Integer.valueOf(finalState.getCroupierSum()).toString());
@@ -81,7 +85,7 @@ public class BlackJackUi extends Application {
     public void initNewGame() {
         initLabels();
         enableButtons();
-        game = new Game();
+        game = new Game(List.of("player1"));
     }
 
     private void enableButtons() {
