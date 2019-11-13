@@ -88,13 +88,19 @@ public class Player {
     public static Player fromString(String player) {
         String[] tokens = player.split(":");
         String name = tokens[0];
-        List<Card> cards = new ArrayList<>();
-        for (int i = 1; i < tokens.length - 1; i++) {
-            cards.add(Card.fromString(tokens[i]));
-        }
+        List<Card> cards = parseCards(tokens);
 
         boolean isActive = Boolean.parseBoolean(tokens[tokens.length - 1]);
 
         return new Player(name, cards, isActive);
+    }
+
+    @NotNull
+    private static List<Card> parseCards(String[] tokens) {
+        List<Card> cards = new ArrayList<>();
+        for (int i = 1; i < tokens.length - 1; i++) {
+            cards.add(Card.fromString(tokens[i]));
+        }
+        return cards;
     }
 }
