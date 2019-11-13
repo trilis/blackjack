@@ -9,8 +9,8 @@ public class Game {
     private Deck deck = new Deck();
     private List<Player> players = new ArrayList<>();
     private Player croupier = new Player("croupier");
-    private State state = State.CONTINUE;
     private int activePlayerId = 0;
+    private FinalState finalState = null;
 
     //FIXME
     private Player activePlayer;
@@ -26,8 +26,11 @@ public class Game {
         }
     }
 
-    public void nextPlayer() {
+    private void nextPlayer() {
         activePlayerId++;
+        if (activePlayerId == players.size()) {
+            stop();
+        }
     }
 
     public void askForNextMove() {
@@ -40,14 +43,21 @@ public class Game {
     }
 
     public GameState getGameState() {
-        return new GameState();
+        if (finalState != null) {
+            return new GameState(players, null);
+        } else {
+            return new GameState(players, players.get(activePlayerId));
+        }
     }
 
-    public FinalState stop() {
+    public void stop() {
         while (croupier.calculateOptimalSum(MAX_POINTS) < 16) {
             croupier.addCard(deck.getNextCard());
         }
-        state = State.FINISH;
-        return new FinalState(player.calculateOptimalSum(MAX_POINTS), croupier.calculateOptimalSum(MAX_POINTS));
+        finalState = new FinalState(players, croupier.calculateOptimalSum(MAX_POINTS));
+    }
+
+    public FinalState getFinalState() {
+        return finalState;
     }
 }
