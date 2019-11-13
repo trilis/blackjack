@@ -51,18 +51,22 @@ public class FinalState {
 
         for (var player : players) {
             var playerSum = player.calculateOptimalSum(Game.MAX_POINTS);
-            ResultKind resultKind;
-            if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
-                if (playerSum == croupierSum) {
-                    resultKind = ResultKind.DRAW;
-                } else {
-                    resultKind = ResultKind.WIN;
-                }
-            } else {
-                resultKind = ResultKind.LOSE;
-            }
+            ResultKind resultKind = getResultKind(croupierSum, playerSum);
             results.add(new Result(player.getName(), playerSum, resultKind));
         }
+    }
+
+    @NotNull
+    private FinalState.ResultKind getResultKind(int croupierSum, int playerSum) {
+        ResultKind resultKind = ResultKind.LOSE;
+        if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
+            if (playerSum == croupierSum) {
+                resultKind = ResultKind.DRAW;
+            } else {
+                resultKind = ResultKind.WIN;
+            }
+        }
+        return resultKind;
     }
 
     @NotNull
