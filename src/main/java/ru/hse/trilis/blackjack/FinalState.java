@@ -14,6 +14,10 @@ public class FinalState {
     public FinalState(List<Player> players, int croupierSum) {
         this.players = players;
         this.croupierSum = croupierSum;
+        initWinner(croupierSum);
+    }
+
+    private void initWinner(int croupierSum) {
         var winnerNames = new ArrayList<String>();
         var drawNames = new ArrayList<String>();
 
@@ -32,10 +36,6 @@ public class FinalState {
     @NotNull
     public Winner getWinner() {
         return winner;
-    }
-
-    public int getPlayerSum() {
-        return playerSum;
     }
 
     public int getCroupierSum() {

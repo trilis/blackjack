@@ -8,9 +8,12 @@ public class Game {
 
     private Deck deck = new Deck();
     private List<Player> players = new ArrayList<>();
-    private Player croupier = new Player();
+    private Player croupier = new Player("croupier");
     private State state = State.CONTINUE;
     private int activePlayerId = 0;
+
+    //FIXME
+    private Player activePlayer;
 
     public Game(List<String> playerNames) {
         int n = playerNames.size();
@@ -29,15 +32,15 @@ public class Game {
 
     public void askForNextMove() {
         var activePlayer = players.get(activePlayerId);
-        if (activePlayer.pass()) {
+        if (activePlayer.isActive()) {
             nextPlayer();
         } else {
             activePlayer.addCard(deck.getNextCard());
         }
     }
 
-    public PlayState getGameState() {
-        return new PlayState();
+    public GameState getGameState() {
+        return new GameState();
     }
 
     public FinalState stop() {

@@ -63,14 +63,14 @@ class GameTest {
 
     @Test
     void testInitialState() {
-        PlayState state = game.getGameState();
+        GameState state = game.getGameState();
         assertEquals(1, state.getCards().size());
         assertEquals(State.CONTINUE, state.getState());
     }
 
     @Test
     void testStopState() {
-        PlayState state = game.getGameState();
+        GameState state = game.getGameState();
         FinalState finalState = game.stop();
         for (Card card : state.getCards()) {
             player.addCard(card);

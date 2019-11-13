@@ -2,15 +2,14 @@ package ru.hse.trilis.blackjack;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class PlayState {
+public class GameState {
     @NotNull private List<Player> players;
     @NotNull private Player activePlayer;
     @NotNull private State state;
 
-    public PlayState(@NotNull List<Player> players ,
+    public GameState(@NotNull List<Player> players ,
                      @NotNull State state,
                      @NotNull Player activePlayer) {
         this.players = players;
@@ -29,6 +28,4 @@ public class PlayState {
     @NotNull public Player getActivePlayer() {
         return activePlayer;
     }
-
-    public
 }
