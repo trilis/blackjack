@@ -17,10 +17,10 @@ class DeckTest {
 
     @Test
     void takeAllCardsTest() {
-        HashMap<String, Integer> types = new HashMap<String, Integer>();
+        var types = new HashMap<String, Integer>();
         for (int i = 0; i < 52; i++) {
-            Card card = deck.getNextCard();
-            Integer count = types.get(card.getName());
+            var card = deck.getNextCard();
+            var count = types.get(card.getName());
             types.put(card.getName(), count == null ? 1 : count + 1);
         }
 

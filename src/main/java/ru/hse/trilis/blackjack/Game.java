@@ -2,15 +2,16 @@ package ru.hse.trilis.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
-    private Deck deck = new Deck(0);
+    private Deck deck = new Deck((new Random()).nextInt());
     private Player player = new Player();
     private List<Card> croupierCards = new ArrayList<>();
     private State state = State.CONTINUE;
 
     public Game() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             player.addCard(deck.getNextCard());
             croupierCards.add(deck.getNextCard());
         }
@@ -21,7 +22,7 @@ public class Game {
     }
 
     public void makeTurn() {
-        Card nextCard = deck.getNextCard();
+        var nextCard = deck.getNextCard();
         player.addCard(nextCard);
     }
 
@@ -34,13 +35,13 @@ public class Game {
     }
 
     static public int optimalSum(List<Card> cards) {
-        int sum = 0;
-        for (Card card : cards) {
+        var sum = 0;
+        for (var card : cards) {
             sum += card.getValues().stream().min(Integer::compareTo).orElse(0);
         }
-        for (Card card : cards) {
+        for (var card : cards) {
             if (card.getValues().size() > 1) {
-                int delta = card.getValues().stream().max(Integer::compareTo).orElse(0)
+                var delta = card.getValues().stream().max(Integer::compareTo).orElse(0)
                         - card.getValues().stream().min(Integer::compareTo).orElse(0);
                 if (sum + delta <= MAX_POINTS) {
                     sum += delta;

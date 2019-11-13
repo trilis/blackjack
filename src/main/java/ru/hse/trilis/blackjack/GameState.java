@@ -1,21 +1,24 @@
 package ru.hse.trilis.blackjack;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class GameState {
+    @NotNull
     private List<Card> cards;
-    private State state;
+    @NotNull private State state;
 
-    public GameState(List<Card> cards, State state) {
+    public GameState(@NotNull List<Card> cards, @NotNull State state) {
         this.cards = cards;
         this.state = state;
     }
 
-    public State getState() {
+    @NotNull public State getState() {
         return state;
     }
 
-    public List<Card> getCards() {
+    @NotNull public List<Card> getCards() {
         return cards;
     }
 }

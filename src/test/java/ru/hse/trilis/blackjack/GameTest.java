@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,12 +45,27 @@ class GameTest {
 
     @Test
     void optimalSumAcc() {
-        assertEquals(11, Game.optimalSum(Collections.singletonList(new Card("", Arrays.asList(11, 1)))));
+        assertEquals(11, Game.optimalSum(Collections.singletonList(new Card("", List.of(11, 1)))));
     }
 
     @Test
     void optimalSumTwoAcc() {
-        var acc = new Card("", Arrays.asList(11, 1));
-        assertEquals(12, Game.optimalSum(Arrays.asList(acc, acc)));
+        var acc = new Card("", List.of(11, 1));
+        assertEquals(12, Game.optimalSum(List.of(acc, acc)));
     }
+
+    @Test
+    void testInitialState() {
+        GameState state = game.getGameState();
+        assertEquals(1, state.getCards().size());
+        assertEquals(State.CONTINUE, state.getState());
+    }
+
+    @Test
+    void testStopState() {
+        GameState state = game.getGameState();
+        FinalState finalState = game.stop();
+        assertEquals(Game.optimalSum(state.getCards()), finalState.getPlayerSum());
+    }
+
 }
