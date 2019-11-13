@@ -37,9 +37,9 @@ public class BlackJackUi extends Application {
      }
 
     @NotNull
-    private String getResultMessage(PlayState playState) {
+    private String getResultMessage(GameState gameState) {
         var result = new StringBuilder();
-        for (Player player : playState.getPlayers()) {
+        for (Player player : gameState.getPlayers()) {
             for (Card card : player.getCards()) {
                 result.append(card.getName()).append("\n");
             }

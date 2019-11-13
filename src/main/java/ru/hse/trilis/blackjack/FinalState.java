@@ -2,39 +2,40 @@ package ru.hse.trilis.blackjack;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FinalState {
     @NotNull
     private Winner winner;
-    private int playerSum;
+    private List<Player> players;
     private int croupierSum;
 
-    public FinalState(int playerSum, int croupierSum) {
-        this.playerSum = playerSum;
+    public FinalState(List<Player> players, int croupierSum) {
+        this.players = players;
         this.croupierSum = croupierSum;
-        initWinner(playerSum, croupierSum);
+        initWinner(croupierSum);
     }
 
-    private void initWinner(int playerSum, int croupierSum) {
-        if (playerSum > Game.MAX_POINTS) {
-            winner = Winner.CROUPIER;
-        } else if (playerSum > croupierSum) {
-            winner = Winner.PLAYER;
-        } else if (playerSum == croupierSum) {
-            winner = Winner.DRAW;
-        } else if (croupierSum > Game.MAX_POINTS) {
-            winner = Winner.PLAYER;
-        } else {
-            winner = Winner.CROUPIER;
+    private void initWinner(int croupierSum) {
+        var winnerNames = new ArrayList<String>();
+        var drawNames = new ArrayList<String>();
+
+        for (var player : players) {
+            var playerSum = player.calculateOptimalSum(21);
+            if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
+                if (playerSum == croupierSum) {
+                    drawNames.add(player.getName());
+                } else {
+                    winnerNames.add(player.getName());
+                }
+            }
         }
     }
 
     @NotNull
     public Winner getWinner() {
         return winner;
-    }
-
-    public int getPlayerSum() {
-        return playerSum;
     }
 
     public int getCroupierSum() {
