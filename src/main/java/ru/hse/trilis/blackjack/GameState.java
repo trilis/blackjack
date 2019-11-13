@@ -1,6 +1,7 @@
 package ru.hse.trilis.blackjack;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,16 @@ public class GameState {
 
     public static GameState fromString(String gameState) {
         String[] tokens = gameState.split("$");
-        List<Player> players = new ArrayList<>();
+        List<Player> players = addPlayers(tokens);
 
-        for (int i = 0; i < tokens.length - 1; i++) {
-            players.add(Player.fromString(tokens[i]));
-        }
+        Player activePlayer = getActivePlayer(tokens[tokens.length - 1], players);
 
-        String activePlayerName = tokens[tokens.length - 1];
+        return new GameState(players, activePlayer);
+    }
+
+    @Nullable
+    private static Player getActivePlayer(String token, List<Player> players) {
+        String activePlayerName = token;
 
         Player activePlayer = null;
         for (Player player : players) {
@@ -51,7 +55,16 @@ public class GameState {
                 activePlayer = player;
             }
         }
+        return activePlayer;
+    }
 
-        return new GameState(players, activePlayer);
+    @NotNull
+    private static List<Player> addPlayers(String[] tokens) {
+        List<Player> players = new ArrayList<>();
+
+        for (int i = 0; i < tokens.length - 1; i++) {
+            players.add(Player.fromString(tokens[i]));
+        }
+        return players;
     }
 }
