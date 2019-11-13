@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
