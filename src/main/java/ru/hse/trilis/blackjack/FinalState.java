@@ -22,7 +22,7 @@ public class FinalState {
         var drawNames = new ArrayList<String>();
 
         for (var player : players) {
-            var playerSum = player.calculateOptimalSum(21);
+            var playerSum = player.calculateOptimalSum(Game.MAX_POINTS);
             if (playerSum <= Game.MAX_POINTS && playerSum >= croupierSum) {
                 if (playerSum == croupierSum) {
                     drawNames.add(player.getName());

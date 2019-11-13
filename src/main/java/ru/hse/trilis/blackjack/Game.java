@@ -15,18 +15,6 @@ public class Game {
     //FIXME
     private Player activePlayer;
 
-    public Game() {
-        for (int i = 0; i < 1; i++) {
-            for (var player : players) {
-                player.addCard(deck.getNextCard());
-            }
-        }
-    }
-
-    public GameState getGameState() {
-        return new GameState(List.of(player, croupier), state, activePlayer);
-    }
-
     public Game(List<String> playerNames) {
         int n = playerNames.size();
         for (int i = 0; i < n; i++) {

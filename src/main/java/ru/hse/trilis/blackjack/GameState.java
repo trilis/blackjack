@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-
 public class GameState {
     @NotNull private List<Player> players;
     @NotNull private Player activePlayer;
