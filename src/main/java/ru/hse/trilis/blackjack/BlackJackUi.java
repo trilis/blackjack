@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -64,13 +62,13 @@ public class BlackJackUi extends Application {
         var message = "";
 
         switch (finalState.getWinner()) {
-            case PLAYER:
+            case Winner.PLAYER:
                 message = "PLAYER";
                 break;
-            case DRAW:
+            case Winner.DRAW:
                 message = "DRAW";
                 break;
-            case CROUPIER:
+            case Winner.CROUPIER:
                 message = "CROUPIER";
                 break;
         }
