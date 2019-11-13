@@ -4,11 +4,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class GameState {
+public class PlayState {
     @NotNull private List<Card> cards;
     @NotNull private State state;
 
-    public GameState(@NotNull List<Card> cards, @NotNull State state) {
+    public PlayState(@NotNull List<Card> cards, @NotNull State state) {
         this.cards = cards;
         this.state = state;
     }

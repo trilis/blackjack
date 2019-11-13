@@ -11,7 +11,10 @@ public class FinalState {
     public FinalState(int playerSum, int croupierSum) {
         this.playerSum = playerSum;
         this.croupierSum = croupierSum;
+        initWinner(playerSum, croupierSum);
+    }
 
+    private void initWinner(int playerSum, int croupierSum) {
         if (playerSum > Game.MAX_POINTS) {
             winner = Winner.CROUPIER;
         } else if (playerSum > croupierSum) {
@@ -25,7 +28,8 @@ public class FinalState {
         }
     }
 
-    @NotNull public Winner getWinner() {
+    @NotNull
+    public Winner getWinner() {
         return winner;
     }
 
