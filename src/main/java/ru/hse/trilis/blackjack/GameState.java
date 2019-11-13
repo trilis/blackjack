@@ -3,7 +3,6 @@ package ru.hse.trilis.blackjack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class GameState {

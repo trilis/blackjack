@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Controller of game logic.
@@ -16,7 +17,6 @@ import javafx.stage.Stage;
 public class BlackJackUi extends Application {
     @FXML private Button buttonMakeTurn;
     @FXML private Button buttonFinishGame;
-    @FXML private Button buttonNewGame;
     @FXML private Label cards;
     @FXML private Label yourScore;
     @FXML private Label crScore;
@@ -25,21 +25,28 @@ public class BlackJackUi extends Application {
     @FXML
     public void makeTurnCall() {
         game.makeTurn();
-        var gameState = game.getGameState();
 
+        var gameState = game.getGameState();
         if (gameState.getState() == State.FINISH) {
             finishGame();
             return;
         }
 
-        var result = new StringBuilder();
-        for (Card card : gameState.getCards()) {
-            result.append(card.getName()).append("\n");
-        }
-
-        result.append("\n");
-        cards.setText(result.toString());
+        String result = getResultMessage(gameState);
+        cards.setText(result);
      }
+
+    @NotNull
+    private String getResultMessage(GameState gameState) {
+        var result = new StringBuilder();
+        for (Player player : gameState.getPlayers()) {
+            for (Card card : player.getCards()) {
+                result.append(card.getName()).append("\n");
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
 
     @FXML
     public void finishGame() {
@@ -48,8 +55,7 @@ public class BlackJackUi extends Application {
         yourScore.setText(Integer.valueOf(finalState.getPlayerSum()).toString());
         crScore.setText(Integer.valueOf(finalState.getCroupierSum()).toString());
 
-        buttonMakeTurn.setDisable(true);
-        buttonFinishGame.setDisable(true);
+        disableButtons();
 
         var message = "";
 
@@ -72,15 +78,26 @@ public class BlackJackUi extends Application {
     }
 
     @FXML
-    public void newGame() {
+    public void initNewGame() {
+        initLabels();
+        enableButtons();
+        game = new Game();
+    }
+
+    private void enableButtons() {
+        buttonMakeTurn.setDisable(false);
+        buttonFinishGame.setDisable(false);
+    }
+
+    private void disableButtons() {
+        buttonMakeTurn.setDisable(true);
+        buttonFinishGame.setDisable(true);
+    }
+
+    private void initLabels() {
         cards.setText("No cards");
         yourScore.setText("");
         crScore.setText("");
-
-        buttonMakeTurn.setDisable(false);
-        buttonFinishGame.setDisable(false);
-
-        game = new Game();
     }
 
     @Override

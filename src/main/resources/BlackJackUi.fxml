@@ -9,7 +9,7 @@
         <ToolBar>
             <Button fx:id="buttonMakeTurn" onAction="#makeTurnCall" text="Pick new card" minWidth="200" disable="true"/>
             <Button fx:id="buttonFinishGame" onAction="#finishGame" text="Finish" minWidth="250" disable="true"/>
-            <Button fx:id="buttonNewGame" onAction="#newGame" text="Start new game" minWidth="250" disable="false"/>
+            <Button fx:id="buttonNewGame" onAction="#initNewGame" text="Start new game" minWidth="250" disable="false"/>
 
         </ToolBar>
     </top>

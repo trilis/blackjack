@@ -12,7 +12,7 @@ class DeckTest {
 
     @BeforeEach
     void init() {
-        deck = new Deck(42);
+        deck = new Deck();
     }
 
     @Test
